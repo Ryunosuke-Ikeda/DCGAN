@@ -15,16 +15,20 @@ hp1 = {}
 hp1['batch_size'] = 16 # バッチサイズ 
 hp1['epoch'] = 400 #エポック数
 #folder='atutest1'
-folder='humantest'
 
-##アニメ絵bs64
+#カレントディレクトリ
+dir="################"
+#出力の場所(作っておく)
+folder='##############'
+#学習データ場所
+url="#################"
 
 
 # === 1. データの読み込み ===
 # datasetrの準備
 #dataset = datasets.ImageFolder("/Users/ryunosuke/Desktop/python/GAN_torch/sample-data/",
 #dataset = datasets.ImageFolder("/Users/ryunosuke/Desktop/python/GAN_torch/resize/",
-dataset = datasets.ImageFolder("/Users/ryunosuke/Desktop/python/GAN_torch/resizeall/",
+dataset = datasets.ImageFolder(url,
     transform=transforms.Compose([
         transforms.ToTensor(),
         
@@ -194,13 +198,13 @@ for epoch in range(hp1['epoch']):
     if epoch % 10 == 0:
         torch.save(
             model_G.state_dict(),
-            "/Users/ryunosuke/Desktop/python/GAN_torch/Weight_Generator/{}/G_{:03d}.prm".format(folder,epoch),
+            "{}Weight_Generator/{}/G_{:03d}.prm".format(dir,folder,epoch),
             pickle_protocol=4)
         torch.save(
             model_D.state_dict(),
-            "/Users/ryunosuke/Desktop/python/GAN_torch/Weight_Discriminator/{}/D_{:03d}.prm".format(folder,epoch),
+            "{}Weight_Discriminator/{}/D_{:03d}.prm".format(dir,folder,epoch),
             pickle_protocol=4)
 
         generated_img = model_G(check_z)
         save_image(generated_img,
-                   "/Users/ryunosuke/Desktop/python/GAN_torch/Generated_Image/{}/{:03d}.jpg".format(folder,epoch))
+                   "{}Generated_Image/{}/{:03d}.jpg".format(dir,folder,epoch))
