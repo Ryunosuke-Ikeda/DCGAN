@@ -26,8 +26,6 @@ url="#################"
 
 # === 1. データの読み込み ===
 # datasetrの準備
-#dataset = datasets.ImageFolder("/Users/ryunosuke/Desktop/python/GAN_torch/sample-data/",
-#dataset = datasets.ImageFolder("/Users/ryunosuke/Desktop/python/GAN_torch/resize/",
 dataset = datasets.ImageFolder(url,
     transform=transforms.Compose([
         transforms.ToTensor(),
